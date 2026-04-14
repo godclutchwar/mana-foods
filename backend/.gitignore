@@ -1,0 +1,25 @@
+# Maven build output
+target/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.class
+
+# Maven wrapper (optional, include if you want)
+!.mvn/wrapper/maven-wrapper.jar
+
+# Application logs
+*.log
+logs/
+
+# Uploaded images (runtime, not source)
+uploads/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Spring Boot dev tools
+spring-devtools.properties
