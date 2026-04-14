@@ -1,0 +1,7 @@
+{
+  "name": "mana-monorepo",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cd backend && npm install && cd ../frontend && npm install && npm run build"
+  }
+}

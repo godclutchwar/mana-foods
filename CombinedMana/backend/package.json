@@ -1,0 +1,20 @@
+{
+  "name": "mana-foods-backend",
+  "version": "1.0.0",
+  "description": "Express backend for Mana Foods",
+  "main": "api.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "@netlify/blobs": "^0.1.0",
+    "@netlify/neon": "^0.1.0",
+    "pg": "^8.11.5",
+    "serverless-http": "^3.2.0"
+  }
+}
