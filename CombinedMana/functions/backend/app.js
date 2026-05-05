@@ -275,6 +275,15 @@ router.get('/status', (req, res) => {
   });
 });
 
-app.use(['/api', '/'], router);
+router.use((req, res) => {
+  res.status(404).json({
+    error: 'Route not found',
+    path: req.path,
+    originalUrl: req.originalUrl,
+    method: req.method
+  });
+});
+
+app.use(['/api', '/.netlify/functions/api', '/'], router);
 
 module.exports = app;
