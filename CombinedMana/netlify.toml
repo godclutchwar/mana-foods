@@ -1,11 +1,11 @@
 [build]
   command = "npm run build"
   publish = "frontend/dist"
-  functions = "backend"
+  functions = "functions"
 
 [functions]
   node_bundler = "esbuild"
-  included_files = ["backend/data.json"]
+  included_files = ["functions/backend/data.json"]
 
 [dev]
   command = "cd frontend && npm run dev"
@@ -14,8 +14,9 @@
 
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
+  to = "/.netlify/functions/api"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/uploads/*"

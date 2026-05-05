@@ -1,6 +1,6 @@
 const serverless = require('serverless-http');
-const app = require('./app');
-const { initDb } = require('./db');
+const app = require('./backend/app');
+const { initDb } = require('./backend/db');
 
 // Initialize database (run migrations/table creation)
 // Note: In serverless, this might run multiple times. 
