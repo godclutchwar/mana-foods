@@ -329,4 +329,12 @@ app.get('/uploads/:key', async (req, res, next) => {
   }
 });
 
+app.get('/api/status', (req, res) => {
+  res.json({ 
+    mode: require('./db').getMode(),
+    timestamp: new Date().toISOString(),
+    dbConnected: !!require('./db').pool || require('./db').getMode() === 'mock'
+  });
+});
+
 module.exports = app;

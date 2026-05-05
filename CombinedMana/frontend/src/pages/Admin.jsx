@@ -56,6 +56,7 @@ export default function Admin() {
   const [expandedCats, setExpandedCats] = useState({});
   const [orderedCats, setOrderedCats] = useState([]);
   const [dragOverIdx, setDragOverIdx] = useState(null);
+  const [dbStatus, setDbStatus] = useState({ mode: 'checking...', dbConnected: false });
 
   // Keep orderedCats in sync when categories data refreshes
   React.useEffect(() => {
@@ -323,13 +324,19 @@ export default function Admin() {
 
   const fetchData = () => {
     setLoading(true);
+    // Fetch DB status too
+    fetch(`${API_BASE_URL}/api/status`)
+      .then(res => res.json())
+      .then(status => setDbStatus(status))
+      .catch(err => console.error('Status fetch failed', err));
+
     Promise.all([
       fetch(`${API_BASE_URL}/api/products`).then(res => res.json()),
       fetch(`${API_BASE_URL}/api/categories`).then(res => res.json()),
       fetch(`${API_BASE_URL}/api/content`).then(res => res.json())
     ]).then(([prodData, catData, contentData]) => {
-      setProducts(prodData);
-      setCategories(catData);
+      setProducts(Array.isArray(prodData) ? prodData : []);
+      setCategories(Array.isArray(catData) ? catData : []);
       const apiData = Array.isArray(contentData) ? contentData : [];
       const merged = [...apiData];
       Object.entries(CONTENT_DEFAULTS).forEach(([key, value]) => {
@@ -622,7 +629,16 @@ export default function Admin() {
           </button>
         </nav>
         
-        <div className="p-4 border-t border-forest-800">
+        <div className="p-4 border-t border-forest-800 space-y-3">
+          <div className="px-4 py-2 bg-forest-950/50 rounded-lg border border-forest-800">
+            <p className="text-[10px] uppercase tracking-widest text-forest-400 font-bold mb-1">Database Mode</p>
+            <div className="flex items-center gap-2">
+              <div className={`w-2 h-2 rounded-full ${dbStatus.mode === 'postgres' ? 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]' : 'bg-yellow-500 shadow-[0_0_8px_rgba(234,179,8,0.6)]'}`}></div>
+              <span className={`text-xs font-bold uppercase ${dbStatus.mode === 'postgres' ? 'text-green-400' : 'text-yellow-400'}`}>
+                {dbStatus.mode}
+              </span>
+            </div>
+          </div>
           <button 
             onClick={handleLogout}
             className="w-full flex items-center space-x-3 px-4 py-3 text-red-400 hover:bg-forest-800 rounded-xl transition-colors"

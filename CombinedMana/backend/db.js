@@ -62,6 +62,9 @@ const query = async (text, params) => {
             category_name: mockData.categories.find(c => c.id === p.category_id)?.name || 'Unknown'
         })) };
     }
+    if (t.includes('select count(*) from categories')) {
+        return { rows: [{ count: mockData.categories.length.toString() }] };
+    }
     if (t.includes('select * from stock_levels where product_id')) {
         const pid = params[0];
         return { rows: mockData.stock_levels.filter(s => s.product_id === pid) };
@@ -219,9 +222,11 @@ const initDb = async () => {
 
   // Seeding from data.json if empty
   try {
-    const catCheck = await query('SELECT count(*) FROM categories');
-    if (parseInt(catCheck.rows[0].count) === 0) {
-      console.log('Database empty. Seeding from data.json...');
+    const catCheck = await query('SELECT count(*) as count FROM categories');
+    const count = catCheck.rows && catCheck.rows[0] ? parseInt(catCheck.rows[0].count) : 0;
+    
+    if (count === 0) {
+      console.log('Database empty or tables missing data. Seeding from data.json...');
       const dataPath = path.join(__dirname, 'data.json');
       if (fs.existsSync(dataPath)) {
         const data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
@@ -269,5 +274,7 @@ const initDb = async () => {
 module.exports = {
   query,
   pool,
-  initDb
+  initDb,
+  getMode: () => useMock ? 'mock' : 'postgres',
+  useMock
 };
