@@ -19,12 +19,26 @@ if (process.env.DATABASE_URL) {
 
 const loadMockData = () => {
   try {
-    const data = fs.readFileSync(path.join(__dirname, 'data.json'), 'utf8');
+    const dataPath = path.join(__dirname, 'data.json');
+    if (!fs.existsSync(dataPath)) {
+        mockData = { site_content: [], categories: [], products: [], stock_levels: [] };
+        return;
+    }
+    const data = fs.readFileSync(dataPath, 'utf8');
     mockData = JSON.parse(data);
   } catch (err) {
     console.error('Failed to load mock data:', err.message);
     mockData = { site_content: [], categories: [], products: [], stock_levels: [] };
   }
+};
+
+const saveMockData = () => {
+    try {
+        const dataPath = path.join(__dirname, 'data.json');
+        fs.writeFileSync(dataPath, JSON.stringify(mockData, null, 2), 'utf8');
+    } catch (err) {
+        console.error('Failed to save mock data:', err.message);
+    }
 };
 
 if (useMock) loadMockData();
@@ -58,18 +72,21 @@ const query = async (text, params) => {
         const [order, id] = params;
         const cat = mockData.categories.find(c => Number(c.id) === Number(id));
         if (cat) cat.display_order = order;
+        saveMockData();
         return { rowCount: 1 };
     }
     if (t.includes('update stock_levels set in_stock')) {
         const [id] = params;
         const stock = mockData.stock_levels.find(s => Number(s.id) === Number(id));
         if (stock) stock.inStock = !stock.inStock;
+        saveMockData();
         return { rows: [stock], rowCount: 1 };
     }
     if (t.includes('update stock_levels set price')) {
         const [price, id] = params;
         const stock = mockData.stock_levels.find(s => Number(s.id) === Number(id));
         if (stock) stock.price = parseFloat(price);
+        saveMockData();
         return { rows: [stock], rowCount: 1 };
     }
     if (t.includes('update stock_levels set weight')) {
@@ -80,6 +97,7 @@ const query = async (text, params) => {
         stock.price = price;
         stock.inStock = inStock;
       }
+      saveMockData();
       return { rows: [stock], rowCount: 1 };
     }
     if (t.includes('update products set name')) {
@@ -91,24 +109,39 @@ const query = async (text, params) => {
         prod.image_url = img;
         prod.category_id = catId;
       }
+      saveMockData();
       return { rows: [prod], rowCount: 1 };
     }
     if (t.includes('delete from stock_levels where id')) {
       const [id] = params;
       mockData.stock_levels = mockData.stock_levels.filter(s => Number(s.id) !== Number(id));
+      saveMockData();
       return { rowCount: 1 };
     }
     if (t.includes('delete from products where id')) {
       const [id] = params;
       mockData.products = mockData.products.filter(p => Number(p.id) !== Number(id));
+      saveMockData();
       return { rowCount: 1 };
     }
 
+    if (t.includes('insert into site_content')) {
+      const [key, value] = params;
+      const existing = mockData.site_content.find(s => s.key === key);
+      if (existing) {
+        existing.value = value;
+      } else {
+        mockData.site_content.push({ key, value });
+      }
+      saveMockData();
+      return { rows: [], rowCount: 1 };
+    }
     if (t.includes('insert into categories')) {
       const [name, img, desc, order] = params;
       const newId = (mockData.categories.length > 0 ? Math.max(...mockData.categories.map(c => Number(c.id))) : 0) + 1;
       const newCat = { id: newId, name, image_url: img, description: desc, display_order: order };
       mockData.categories.push(newCat);
+      saveMockData();
       return { rows: [newCat], rowCount: 1 };
     }
     if (t.includes('insert into products')) {
@@ -116,6 +149,7 @@ const query = async (text, params) => {
       const newId = (mockData.products.length > 0 ? Math.max(...mockData.products.map(p => Number(p.id))) : 0) + 1;
       const newProd = { id: newId, name, description: desc, image_url: img, category_id: catId };
       mockData.products.push(newProd);
+      saveMockData();
       return { rows: [newProd], rowCount: 1 };
     }
     if (t.includes('insert into stock_levels')) {
@@ -123,6 +157,7 @@ const query = async (text, params) => {
       const newId = (mockData.stock_levels.length > 0 ? Math.max(...mockData.stock_levels.map(s => Number(s.id))) : 0) + 1;
       const newStock = { id: newId, weight, price, inStock, product_id: productId };
       mockData.stock_levels.push(newStock);
+      saveMockData();
       return { rows: [newStock], rowCount: 1 };
     }
     

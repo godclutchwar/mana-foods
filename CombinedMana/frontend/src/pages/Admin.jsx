@@ -9,6 +9,38 @@ const resolveImageUrl = (url) => {
   return url;
 };
 
+const CONTENT_DEFAULTS = {
+  HERO_SUBTITLE:   'MANA Desi-Licious',
+  HERO_TITLE:      'Authentic Taste, Handcrafted with Love',
+  HERO_PARA:       'We bring you the authentic soul of delicious homemade Food. Handcrafted recipes, natural ingredients, and a legacy of love in every single bite.',
+  HERO_IMAGE:      '/images/traditional.png',
+  HERO_CTA:        'Handcrafted with love, delivered with care. Experience the true soul of Home Made food.',
+  CTA_TITLE_1:     'BRING THE TRADITION',
+  CTA_TITLE_2:     'HOME',
+  CONTACT_NUMBER:  '9945060993',
+  WHATSAPP_NUMBER: '919945060993',
+  PHONE_1:         '+91 9945060993',
+  PHONE_2:         '+91 7829029995',
+  ADDRESS:         'Parappana Agrahara, Bangalore 560100',
+  FACEBOOK_URL:    'https://www.facebook.com/share/1BMTnro3vT/',
+  INSTAGRAM_URL:   'https://www.instagram.com/manadesilicioushomefoods/',
+  NOTICE_1:        'Takes 24-48 hrs to deliver',
+  NOTICE_2:        'We accept bulk orders on a pre-order basis',
+  ABOUT_LABEL:     'Our Story',
+  ABOUT_HEADLINE:  'Preserving Authentic Flavors',
+  ABOUT_PARA_1:    'MANA Desi-Licious was born from a deep passion to preserve and share the authentic, time-honored flavors of South India. What started as a small family kitchen cooking traditional generational recipes has grown into a space dedicated to bringing the taste of home to your table.',
+  ABOUT_PARA_2:    'Every carefully crafted sweet and savory snack uses only the finest natural ingredients, completely free from preservatives. Our mission is simple: honest, pure, and authentic taste in every bite.',
+  ABOUT_IMAGE:     '/images/sunnundalu.png',
+  FEATURE_1_TITLE: 'Heritage Recipes',
+  FEATURE_1_DESC:  'Sourced directly from generational family kitchens for true authenticity.',
+  FEATURE_2_TITLE: 'Purity Guaranteed',
+  FEATURE_2_DESC:  'No artificial colors, no preservatives. Just 100% natural goodness.',
+  FEATURE_3_TITLE: 'Freshly Made',
+  FEATURE_3_DESC:  'Small-batch preparation ensures every order is as fresh as home-cooked food.',
+  FOOTER_TEXT:     'Taste the Tradition of India in Every Bite.',
+  GALLERY_ITEMS:   '[{"url":"/images/traditional.png","label":"Traditional Sweets"},{"url":"/images/laddoos.png","label":"Laddoos"},{"url":"/images/pickles.png","label":"Pickles"},{"url":"/images/pootharekulu.png","label":"Pootarekulu"},{"url":"/images/sunnundalu.png","label":"Sunnundalu"},{"url":"/images/ghee.png","label":"Ghee"}]',
+};
+
 export default function Admin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
@@ -132,6 +164,148 @@ export default function Admin() {
   const [showEditModal, setShowEditModal] = useState(false);
   const [editingData, setEditingData] = useState(null); // { productId, stockId, name, description, categoryId, weight, price, imageUrl, inStock }
 
+  const [galleryItems, setGalleryItems] = useState([]);
+  const [expandedSections, setExpandedSections] = useState({ contact: true, hero: false, about: false, features: false, announcements: false, footer: false, gallery: false });
+
+  useEffect(() => {
+    const g = siteSettings.find(s => s.key === 'GALLERY_ITEMS');
+    if (g) {
+      try { setGalleryItems(JSON.parse(g.value || '[]')); } catch { setGalleryItems([]); }
+    }
+  }, [siteSettings]);
+
+  const getVal = (key) => {
+    const s = siteSettings.find(s => s.key === key);
+    return s ? s.value : '';
+  };
+
+  const setVal = (key, value) => {
+    setSiteSettings(prev => {
+      const exists = prev.find(s => s.key === key);
+      if (exists) return prev.map(s => s.key === key ? { ...s, value } : s);
+      return [...prev, { key, value }];
+    });
+  };
+
+  const handleContentImageUpload = (file, key) => {
+    if (!file) return;
+    setUploadingImage(true);
+    const formData = new FormData();
+    formData.append('file', file);
+    fetch(`${API_BASE_URL}/api/upload`, { method: 'POST', body: formData })
+      .then(res => res.json())
+      .then(data => { setVal(key, data.imageUrl); setUploadingImage(false); })
+      .catch(err => { console.error(err); alert('Upload failed: ' + err.message); setUploadingImage(false); });
+  };
+
+  const updateGalleryInSettings = (newItems) => {
+    setGalleryItems(newItems);
+    setSiteSettings(prev => {
+      const exists = prev.find(s => s.key === 'GALLERY_ITEMS');
+      const serialized = JSON.stringify(newItems);
+      if (exists) return prev.map(s => s.key === 'GALLERY_ITEMS' ? { ...s, value: serialized } : s);
+      return [...prev, { key: 'GALLERY_ITEMS', value: serialized }];
+    });
+  };
+
+  const handleGalleryImageUpload = (file, idx) => {
+    if (!file) return;
+    setUploadingImage(true);
+    const formData = new FormData();
+    formData.append('file', file);
+    fetch(`${API_BASE_URL}/api/upload`, { method: 'POST', body: formData })
+      .then(res => res.json())
+      .then(data => {
+        const updated = galleryItems.map((item, i) => i === idx ? { ...item, url: data.imageUrl } : item);
+        updateGalleryInSettings(updated);
+        setUploadingImage(false);
+      })
+      .catch(err => { console.error(err); setUploadingImage(false); });
+  };
+
+  const handlePublishContent = () => {
+    fetch(`${API_BASE_URL}/api/content`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(siteSettings)
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.text().then(t => { throw new Error(t || res.statusText); });
+        }
+        const ct = res.headers.get('content-type') || '';
+        return ct.includes('application/json') ? res.json() : res.text();
+      })
+      .then(() => {
+        alert('Live site updated successfully!');
+        fetchData();
+      })
+      .catch(err => alert('Publish failed: ' + err.message));
+  };
+
+  const toggleSection = (name) => setExpandedSections(prev => ({ ...prev, [name]: !prev[name] }));
+
+  const SITE_SECTIONS = [
+    {
+      id: 'contact', icon: '📞', title: 'Contact & Social Links',
+      fields: [
+        { key: 'PHONE_1', label: 'Primary Phone Number', rows: 1 },
+        { key: 'PHONE_2', label: 'Secondary Phone Number', rows: 1 },
+        { key: 'WHATSAPP_NUMBER', label: 'WhatsApp Number (with country code, e.g. 919945060993)', rows: 1 },
+        { key: 'ADDRESS', label: 'Business Address', rows: 2 },
+        { key: 'FACEBOOK_URL', label: 'Facebook Page URL', rows: 1 },
+        { key: 'INSTAGRAM_URL', label: 'Instagram Page URL', rows: 1 },
+      ]
+    },
+    {
+      id: 'hero', icon: '🏠', title: 'Hero Section',
+      fields: [
+        { key: 'HERO_SUBTITLE', label: 'Hero Large Title (Gold text, e.g. MANA Desi-Licious)', rows: 1 },
+        { key: 'HERO_TITLE', label: 'Hero Sub-headline (e.g. Authentic Taste)', rows: 1 },
+        { key: 'HERO_PARA', label: 'Hero Description Paragraph', rows: 3 },
+        { key: 'HERO_IMAGE', label: 'Hero Image', rows: 1, isImage: true },
+      ]
+    },
+    {
+      id: 'about', icon: '📖', title: 'About / Our Story',
+      fields: [
+        { key: 'ABOUT_LABEL', label: 'Section Label (e.g. Our Story)', rows: 1 },
+        { key: 'ABOUT_HEADLINE', label: 'About Headline', rows: 1 },
+        { key: 'ABOUT_PARA_1', label: 'First Paragraph', rows: 4 },
+        { key: 'ABOUT_PARA_2', label: 'Second Paragraph', rows: 4 },
+        { key: 'ABOUT_IMAGE', label: 'About Section Image', rows: 1, isImage: true },
+      ]
+    },
+    {
+      id: 'features', icon: '⭐', title: 'Feature Highlights (Why Our Kitchen?)',
+      fields: [
+        { key: 'FEATURE_1_TITLE', label: 'Feature 1 Title', rows: 1 },
+        { key: 'FEATURE_1_DESC', label: 'Feature 1 Description', rows: 2 },
+        { key: 'FEATURE_2_TITLE', label: 'Feature 2 Title', rows: 1 },
+        { key: 'FEATURE_2_DESC', label: 'Feature 2 Description', rows: 2 },
+        { key: 'FEATURE_3_TITLE', label: 'Feature 3 Title', rows: 1 },
+        { key: 'FEATURE_3_DESC', label: 'Feature 3 Description', rows: 2 },
+      ]
+    },
+    {
+      id: 'announcements', icon: '📢', title: 'Announcements & CTA',
+      fields: [
+        { key: 'CTA_TITLE_1', label: 'CTA Headline Line 1 (large text, e.g. BRING THE TRADITION)', rows: 1 },
+        { key: 'CTA_TITLE_2', label: 'CTA Headline Line 2 (e.g. HOME)', rows: 1 },
+        { key: 'HERO_CTA', label: 'CTA Description Text', rows: 3 },
+        { key: 'NOTICE_1', label: 'Delivery Notice (shown in banner)', rows: 1 },
+        { key: 'NOTICE_2', label: 'Bulk Order Notice (shown in banner)', rows: 1 },
+      ]
+    },
+    {
+      id: 'footer', icon: '🦶', title: 'Footer',
+      fields: [
+        { key: 'FOOTER_TEXT', label: 'Footer Tagline', rows: 2 },
+        { key: 'CONTACT_NUMBER', label: 'Contact Number for WhatsApp link (digits only, e.g. 9945060993)', rows: 1 },
+      ]
+    },
+  ];
+
   const handleLogin = (e) => {
     e.preventDefault();
     if (password === 'manadesi123') {
@@ -156,7 +330,12 @@ export default function Admin() {
     ]).then(([prodData, catData, contentData]) => {
       setProducts(prodData);
       setCategories(catData);
-      setSiteSettings(contentData || []);
+      const apiData = Array.isArray(contentData) ? contentData : [];
+      const merged = [...apiData];
+      Object.entries(CONTENT_DEFAULTS).forEach(([key, value]) => {
+        if (!merged.find(s => s.key === key)) merged.push({ key, value });
+      });
+      setSiteSettings(merged);
       setLoading(false);
     }).catch(err => {
       console.error(err);
@@ -690,41 +869,154 @@ export default function Admin() {
               <div className="flex justify-between items-center mb-8 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                 <div>
                   <h2 className="text-2xl font-serif font-bold text-forest-900">Live Site Editor</h2>
-                  <p className="text-gray-500 text-sm mt-1">Directly modify the text shown on your live storefront pages.</p>
+                  <p className="text-gray-500 text-sm mt-1">Modify any text, image, or content shown on your live storefront.</p>
                 </div>
-                <button 
-                  onClick={() => {
-                    fetch(`${API_BASE_URL}/api/content`, {
-                      method: 'POST',
-                      headers: {'Content-Type': 'application/json'},
-                      body: JSON.stringify(siteSettings)
-                    }).then(() => alert('Live site updated successfully!'));
-                  }}
-                  className="bg-gold-500 text-forest-900 px-6 py-3 rounded-xl font-bold shadow-lg hover:bg-gold-400 transition"
-                >
+                <button onClick={handlePublishContent} className="bg-gold-500 text-forest-900 px-6 py-3 rounded-xl font-bold shadow-lg hover:bg-gold-400 transition">
                   Publish Changes
                 </button>
               </div>
 
-              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 grid gap-6">
-                {siteSettings.map((setting, idx) => (
-                  <div key={setting.contentKey} className="border-b border-gray-100 pb-6 relative group">
-                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">{setting.contentKey.replace(/_/g, ' ')}</label>
-                    <textarea 
-                      rows="2"
-                      value={setting.contentValue}
-                      onChange={(e) => {
-                        const newSettings = [...siteSettings];
-                        newSettings[idx].contentValue = e.target.value;
-                        setSiteSettings(newSettings);
-                      }}
-                      className="w-full bg-gray-50 border-2 border-transparent focus:border-gold-500 rounded-xl px-5 py-3 font-medium text-gray-800 transition shadow-inner resize-y"
-                    />
+              <div className="space-y-4">
+                {SITE_SECTIONS.map(section => (
+                  <div key={section.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button
+                      onClick={() => toggleSection(section.id)}
+                      className="w-full flex items-center justify-between p-5 hover:bg-gray-50 transition-colors"
+                    >
+                      <div className="flex items-center space-x-3">
+                        <span className="text-2xl">{section.icon}</span>
+                        <span className="text-lg font-serif font-bold text-forest-900">{section.title}</span>
+                      </div>
+                      {expandedSections[section.id]
+                        ? <ChevronDown className="w-5 h-5 text-gold-500" />
+                        : <ChevronRight className="w-5 h-5 text-gray-400" />}
+                    </button>
+
+                    {expandedSections[section.id] && (
+                      <div className="px-6 pb-6 grid gap-5 border-t border-gray-100">
+                        {section.fields.map(field => (
+                          <div key={field.key} className="pt-4">
+                            <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">{field.label}</label>
+                            {field.isImage ? (
+                              <div className="space-y-2">
+                                <div className="flex gap-2">
+                                  <input
+                                    type="text"
+                                    value={getVal(field.key)}
+                                    onChange={e => setVal(field.key, e.target.value)}
+                                    placeholder="Paste image URL or upload →"
+                                    className="flex-1 bg-gray-50 border-2 border-transparent focus:border-gold-500 rounded-xl px-4 py-2.5 font-medium text-gray-600 text-sm transition"
+                                  />
+                                  <label className={`flex items-center space-x-1.5 border-2 px-4 py-2.5 rounded-xl font-medium transition-colors whitespace-nowrap cursor-pointer text-sm ${uploadingImage ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed' : 'bg-gold-500/10 text-forest-900 border-gold-500/40 hover:bg-gold-500/20'}`}>
+                                    <span>📁</span>
+                                    <span>{uploadingImage ? 'Uploading...' : 'Upload'}</span>
+                                    <input type="file" className="hidden" accept="image/*" disabled={uploadingImage} onChange={e => handleContentImageUpload(e.target.files[0], field.key)} />
+                                  </label>
+                                </div>
+                                {getVal(field.key) && (
+                                  <img
+                                    src={getVal(field.key).startsWith('/uploads/') ? `${API_BASE_URL}${getVal(field.key)}` : getVal(field.key)}
+                                    alt="preview"
+                                    className="h-20 w-28 rounded-xl object-cover border border-gray-200 shadow-sm"
+                                    onError={e => e.target.style.display = 'none'}
+                                  />
+                                )}
+                              </div>
+                            ) : (
+                              <textarea
+                                rows={field.rows || 2}
+                                value={getVal(field.key)}
+                                onChange={e => setVal(field.key, e.target.value)}
+                                className="w-full bg-gray-50 border-2 border-transparent focus:border-gold-500 rounded-xl px-5 py-3 font-medium text-gray-800 transition shadow-inner resize-y"
+                              />
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 ))}
-                {siteSettings.length === 0 && (
-                  <p className="text-center text-gray-400 italic">No site content seeds found. Please restart backend database.</p>
-                )}
+
+                {/* Gallery Section */}
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                  <button
+                    onClick={() => toggleSection('gallery')}
+                    className="w-full flex items-center justify-between p-5 hover:bg-gray-50 transition-colors"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <span className="text-2xl">🖼️</span>
+                      <span className="text-lg font-serif font-bold text-forest-900">Photo Gallery</span>
+                      <span className="text-xs bg-gold-500/20 text-forest-900 px-2 py-0.5 rounded-full font-bold">{galleryItems.length} photos</span>
+                    </div>
+                    {expandedSections.gallery
+                      ? <ChevronDown className="w-5 h-5 text-gold-500" />
+                      : <ChevronRight className="w-5 h-5 text-gray-400" />}
+                  </button>
+
+                  {expandedSections.gallery && (
+                    <div className="px-6 pb-6 border-t border-gray-100">
+                      <p className="text-xs text-gray-400 mt-4 mb-4">These images appear in the Gallery section on the main page. Upload or paste URLs, add a label, then hit Publish.</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                        {galleryItems.map((item, idx) => (
+                          <div key={idx} className="border border-gray-200 rounded-2xl p-3 space-y-2 bg-gray-50/50 relative group">
+                            <button
+                              onClick={() => updateGalleryInSettings(galleryItems.filter((_, i) => i !== idx))}
+                              className="absolute top-2 right-2 p-1 bg-red-50 text-red-400 hover:bg-red-100 rounded-lg transition-colors z-10"
+                              title="Remove"
+                            >
+                              <X className="w-4 h-4" />
+                            </button>
+                            <div className="h-32 rounded-xl overflow-hidden bg-gray-100 border border-gray-200">
+                              {item.url ? (
+                                <img
+                                  src={item.url.startsWith('/uploads/') ? `${API_BASE_URL}${item.url}` : item.url}
+                                  alt={item.label}
+                                  className="w-full h-full object-cover"
+                                  onError={e => e.target.style.display = 'none'}
+                                />
+                              ) : (
+                                <div className="w-full h-full flex items-center justify-center text-gray-300 text-4xl">🖼️</div>
+                              )}
+                            </div>
+                            <div className="flex gap-2">
+                              <input
+                                type="text"
+                                value={item.url}
+                                onChange={e => {
+                                  const updated = galleryItems.map((g, i) => i === idx ? { ...g, url: e.target.value } : g);
+                                  updateGalleryInSettings(updated);
+                                }}
+                                placeholder="Image URL"
+                                className="flex-1 text-xs border border-gray-200 rounded-lg px-2 py-1.5 focus:outline-none focus:border-gold-500 bg-white"
+                              />
+                              <label className={`flex items-center border px-2 py-1.5 rounded-lg text-xs font-medium cursor-pointer whitespace-nowrap transition-colors ${uploadingImage ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed' : 'bg-gold-500/10 border-gold-500/30 text-forest-900 hover:bg-gold-500/20'}`}>
+                                <span>📁</span>
+                                <input type="file" className="hidden" accept="image/*" disabled={uploadingImage} onChange={e => handleGalleryImageUpload(e.target.files[0], idx)} />
+                              </label>
+                            </div>
+                            <input
+                              type="text"
+                              value={item.label}
+                              onChange={e => {
+                                const updated = galleryItems.map((g, i) => i === idx ? { ...g, label: e.target.value } : g);
+                                updateGalleryInSettings(updated);
+                              }}
+                              placeholder="Photo label (optional)"
+                              className="w-full text-xs border border-gray-200 rounded-lg px-2 py-1.5 focus:outline-none focus:border-gold-500 bg-white"
+                            />
+                          </div>
+                        ))}
+                        <button
+                          onClick={() => updateGalleryInSettings([...galleryItems, { url: '', label: '' }])}
+                          className="border-2 border-dashed border-gold-500/40 rounded-2xl p-6 flex flex-col items-center justify-center gap-2 text-gold-500 hover:bg-gold-500/5 transition-colors cursor-pointer h-full min-h-[180px]"
+                        >
+                          <Plus className="w-8 h-8" />
+                          <span className="text-sm font-bold">Add Photo</span>
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           )}

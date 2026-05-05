@@ -12,11 +12,22 @@ app.use(cors());
 app.use(express.json());
 
 // For local development images
-// For local development images
-// app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Multer for file uploads (Memory Storage for Netlify Blobs)
-const storage = multer.memoryStorage();
+// Multer for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const uploadDir = path.join(__dirname, 'uploads');
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+    cb(null, uploadDir);
+  },
+  filename: (req, file, cb) => {
+    const key = Date.now() + '_' + file.originalname.replace(/[^a-zA-Z0-9.\-]/g, '_');
+    cb(null, key);
+  }
+});
 const upload = multer({ storage });
 
 // --- ROUTES ---
@@ -95,6 +106,9 @@ app.get('/api/products', async (req, res) => {
     
     // For each product, get stock levels
     for (let p of products) {
+      // Map snake_case to camelCase for product fields
+      p.imageUrl = p.image_url;
+      
       const stockRes = await query('SELECT * FROM stock_levels WHERE product_id = $1', [p.id]);
       p.stockLevels = stockRes.rows.map(s => ({
         ...s,
@@ -228,6 +242,7 @@ app.delete('/api/stock/:id', async (req, res) => {
 
 // 4. Site Content
 app.get('/api/content', async (req, res) => {
+  res.setHeader('Cache-Control', 'no-store');
   try {
     const result = await query('SELECT * FROM site_content');
     res.json(result.rows);
@@ -238,15 +253,21 @@ app.get('/api/content', async (req, res) => {
 
 app.post('/api/content', async (req, res) => {
   const contents = req.body;
+  if (!Array.isArray(contents) || contents.length === 0) {
+    return res.status(400).json({ error: 'Expected a non-empty array of content items' });
+  }
   try {
-    for (let item of contents) {
+    for (const item of contents) {
+      if (!item.key) continue;
       await query(
         'INSERT INTO site_content (key, value) VALUES ($1, $2) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value',
-        [item.key, item.value]
+        [item.key, item.value ?? '']
       );
     }
-    res.send("Published");
+    const result = await query('SELECT * FROM site_content');
+    res.json(result.rows);
   } catch (err) {
+    console.error('Content save error:', err.message);
     res.status(500).json({ error: err.message });
   }
 });
@@ -255,23 +276,33 @@ app.post('/api/content', async (req, res) => {
 app.post('/api/upload', upload.single('file'), async (req, res) => {
   if (!req.file) return res.status(400).send("No file uploaded");
   
-  const key = Date.now() + '_' + req.file.originalname.replace(/[^a-zA-Z0-9.\-]/g, '_');
-  const store = getStore('mana-uploads');
-  
+  const key = req.file.filename;
+  const imageUrl = `/uploads/${key}`;
+
+  // Async: also try to upload to Netlify Blobs if configured (optional/fail-safe)
   try {
-    await store.set(key, req.file.buffer, {
-      metadata: { contentType: req.file.mimetype }
-    });
-    const imageUrl = `/uploads/${key}`;
-    res.json({ imageUrl });
+    const store = getStore('mana-uploads');
+    if (store) {
+       const fileBuffer = fs.readFileSync(req.file.path);
+       await store.set(key, fileBuffer, {
+         metadata: { contentType: req.file.mimetype }
+       });
+       console.log('Successfully backed up to Netlify Blobs');
+    }
   } catch (err) {
-    console.error('Blob Upload Error:', err);
-    res.status(500).json({ error: err.message });
+    console.warn('Netlify Blobs backup skipped or failed (common in local dev):', err.message);
   }
+  
+  res.json({ imageUrl });
 });
 
-// Route to serve blobs as images
-app.get('/uploads/:key', async (req, res) => {
+// Route to serve blobs as images (Fallback if local file doesn't exist)
+app.get('/uploads/:key', async (req, res, next) => {
+  const localPath = path.join(__dirname, 'uploads', req.params.key);
+  if (fs.existsSync(localPath)) {
+    return next(); // express.static will handle it
+  }
+
   const store = getStore('mana-uploads');
   try {
     const blob = await store.get(req.params.key, { type: 'blob' });
@@ -288,7 +319,7 @@ app.get('/uploads/:key', async (req, res) => {
     };
     
     res.setHeader('Content-Type', mimeTypes[ext] || 'application/octet-stream');
-    res.setHeader('Cache-Control', 'public, max-age=31536000'); // Cache for 1 year
+    res.setHeader('Cache-Control', 'public, max-age=31536000'); 
     
     const arrayBuffer = await blob.arrayBuffer();
     res.send(Buffer.from(arrayBuffer));

@@ -1,131 +1,988 @@
 {
   "site_content": [
-    { "key": "HERO_TITLE", "value": "Authentic Taste, Handcrafted with Love" },
-    { "key": "HERO_SUBTITLE", "value": "MANA Desi-Licious" },
-    { "key": "HERO_CTA", "value": "Handcrafted with love, delivered with care. Experience the true soul of Home Made food." },
-    { "key": "CONTACT_NUMBER", "value": "7829029995" },
-    { "key": "NOTICE_1", "value": "Takes 24-48 hrs to prepare" },
-    { "key": "NOTICE_2", "value": "We accept bulk orders on a pre-order basis" },
-    { "key": "FOOTER_TEXT", "value": "Taste the Tradition of India in Every Bite." }
+    {
+      "key": "HERO_TITLE",
+      "value": "Authentic Taste, Handcrafted with Love"
+    },
+    {
+      "key": "HERO_SUBTITLE",
+      "value": "MANA Desi-Licious"
+    },
+    {
+      "key": "HERO_PARA",
+      "value": "We bring you the authentic soul of delicious homemade Food. Handcrafted recipes, natural ingredients, and a legacy of love in every single bite."
+    },
+    {
+      "key": "HERO_IMAGE",
+      "value": "/images/traditional.png"
+    },
+    {
+      "key": "HERO_CTA",
+      "value": "Handcrafted with love, delivered with care. Experience the true soul of Home Made food."
+    },
+    {
+      "key": "CTA_TITLE_1",
+      "value": "BRING THE TRADITION"
+    },
+    {
+      "key": "CTA_TITLE_2",
+      "value": "HOME"
+    },
+    {
+      "key": "CONTACT_NUMBER",
+      "value": "9945060993"
+    },
+    {
+      "key": "WHATSAPP_NUMBER",
+      "value": "919945060993"
+    },
+    {
+      "key": "PHONE_1",
+      "value": "+91 9945060993"
+    },
+    {
+      "key": "PHONE_2",
+      "value": "+91 7829029995"
+    },
+    {
+      "key": "ADDRESS",
+      "value": "Parappana Agrahara, Bangalore 560100"
+    },
+    {
+      "key": "FACEBOOK_URL",
+      "value": "https://www.facebook.com/share/1BMTnro3vT/"
+    },
+    {
+      "key": "INSTAGRAM_URL",
+      "value": "https://www.instagram.com/manadesilicioushomefoods/"
+    },
+    {
+      "key": "NOTICE_1",
+      "value": "Takes 24-48 hrs to deliver"
+    },
+    {
+      "key": "NOTICE_2",
+      "value": "We accept bulk orders on a pre-order basis"
+    },
+    {
+      "key": "ABOUT_LABEL",
+      "value": "Our Story"
+    },
+    {
+      "key": "ABOUT_HEADLINE",
+      "value": "Preserving Authentic Flavors"
+    },
+    {
+      "key": "ABOUT_PARA_1",
+      "value": "MANA Desi-Licious was born from a deep passion to preserve and share the authentic, time-honored flavors of South India. What started as a small family kitchen cooking traditional generational recipes has grown into a space dedicated to bringing the taste of home to your table."
+    },
+    {
+      "key": "ABOUT_PARA_2",
+      "value": "Every carefully crafted sweet and savory snack uses only the finest natural ingredients, completely free from preservatives. Our mission is simple: honest, pure, and authentic taste in every bite."
+    },
+    {
+      "key": "ABOUT_IMAGE",
+      "value": "/images/sunnundalu.png"
+    },
+    {
+      "key": "FEATURE_1_TITLE",
+      "value": "Heritage and Recipes"
+    },
+    {
+      "key": "FEATURE_1_DESC",
+      "value": "Sourced directly from generational family kitchens for true authenticity."
+    },
+    {
+      "key": "FEATURE_2_TITLE",
+      "value": "Purity Guaranteed"
+    },
+    {
+      "key": "FEATURE_2_DESC",
+      "value": "No artificial colors, no preservatives. Just 100% natural goodness."
+    },
+    {
+      "key": "FEATURE_3_TITLE",
+      "value": "Freshly Made"
+    },
+    {
+      "key": "FEATURE_3_DESC",
+      "value": "Small-batch preparation ensures every order is as fresh as home-cooked food."
+    },
+    {
+      "key": "FOOTER_TEXT",
+      "value": "Taste the Tradition of India in Every Bite."
+    },
+    {
+      "key": "GALLERY_ITEMS",
+      "value": "[{\"url\":\"/images/traditional.png\",\"label\":\"Traditional Sweets\"},{\"url\":\"/images/laddoos.png\",\"label\":\"Laddoos\"},{\"url\":\"/images/pickles.png\",\"label\":\"Pickles\"},{\"url\":\"/images/pootharekulu.png\",\"label\":\"Pootarekulu\"},{\"url\":\"/images/sunnundalu.png\",\"label\":\"Sunnundalu\"},{\"url\":\"/images/ghee.png\",\"label\":\"Ghee\"}]"
+    }
   ],
   "categories": [
-    { "id": 1, "name": "Pootarekulu", "description": "Traditional paper sweet made with love and authentic ingredients.", "display_order": 1, "image_url": "/images/pootharekulu.png" },
-    { "id": 2, "name": "Laddus", "description": "Classic soft and nutritious handcrafted Laddus.", "display_order": 2, "image_url": "/images/laddoos.png" },
-    { "id": 3, "name": "Savouries", "description": "Crunchy, crispy, and spicy evening snacks.", "display_order": 6, "image_url": "/images/savouries.png" },
-    { "id": 4, "name": "Sunnundalu", "description": "Nutritious and traditional Urad Dal delicacies.", "display_order": 4, "image_url": "/images/sunnundalu.png" },
-    { "id": 5, "name": "Traditional", "description": "Timeless favorites like Ariselu and Kajjikayalu.", "display_order": 5, "image_url": "/images/traditional.png" },
-    { "id": 6, "name": "Chikkis", "description": "Crunchy and authentic nutty treats.", "display_order": 3, "image_url": "/images/chikkis.png" },
-    { "id": 7, "name": "Pickles", "description": "Spicy, tangy, and authentic house-made Andhra Pickles.", "display_order": 7, "image_url": "/images/pickles.png" },
-    { "id": 8, "name": "Powders", "description": "Authentic aromatic Spice Powders (Podulu).", "display_order": 8, "image_url": "/images/powders.png" },
-    { "id": 9, "name": "Papads", "description": "Crispy and delicious meal accompaniments.", "display_order": 9, "image_url": "/images/papads.png" },
-    { "id": 10, "name": "Bobbatulu", "description": "Traditional stuffed sweet flatbreads (Puran Poli).", "display_order": 10, "image_url": "/images/bobbatulu.png" },
-    { "id": 11, "name": "Ghee", "description": "Pure and aromatic handmade Buffalo Ghee.", "display_order": 11, "image_url": "/images/ghee.png" },
-    { "id": 12, "name": "Instant Mixes", "description": "Quick and easy traditional meal mixes.", "display_order": 12, "image_url": "/images/instantmixes.png" },
-    { "id": 13, "name": "Paste", "description": "Authentic rich cooking pastes for quick meals.", "display_order": 13, "image_url": "/images/paste.png" },
-    { "id": 14, "name": "Non-Veg Pickles", "description": "Spicy and intense non-veg cravings (Available on Pre-order).", "display_order": 14, "image_url": "/images/nonvegpickles.png" }
+    {
+      "id": 1,
+      "name": "POOTAREKULU/PAPER SWEET",
+      "description": "Traditional paper-thin sweet wafers",
+      "image_url": "/images/pootharekulu.png",
+      "display_order": 1
+    },
+    {
+      "id": 2,
+      "name": "LADDU",
+      "description": "Classic soft and rich round sweets",
+      "image_url": "/images/laddoos.png",
+      "display_order": 2
+    },
+    {
+      "id": 3,
+      "name": "SAVOURIES",
+      "description": "Crispy, crunchy evening snacks",
+      "image_url": "/images/savouries.png",
+      "display_order": 3
+    },
+    {
+      "id": 4,
+      "name": "SUNNUNDALU/BLACKGRAM/URAD DAL LADDU",
+      "description": "Nutritious Urad Dal Ladoos",
+      "image_url": "/images/sunnundalu.png",
+      "display_order": 4
+    },
+    {
+      "id": 5,
+      "name": "TRADITIONAL SWEETS",
+      "description": "Heritage Home Made food festive favorites",
+      "image_url": "/images/traditional.png",
+      "display_order": 5
+    },
+    {
+      "id": 6,
+      "name": "CHIKKIS",
+      "description": "Crunchy traditional brittle",
+      "image_url": "/images/chikkis.png",
+      "display_order": 6
+    },
+    {
+      "id": 7,
+      "name": "PICKLES",
+      "description": "Authentic spicy Home Made food pickles",
+      "image_url": "/images/pickles.png",
+      "display_order": 7
+    },
+    {
+      "id": 8,
+      "name": "NON-VEG PICKLES",
+      "description": "Spicy and intense non-veg cravings",
+      "image_url": "/images/nonvegpickles.png",
+      "display_order": 8
+    },
+    {
+      "id": 9,
+      "name": "POWDERS",
+      "description": "Hand-ground spice blends",
+      "image_url": "/images/powders.png",
+      "display_order": 9
+    },
+    {
+      "id": 10,
+      "name": "PAPADS",
+      "description": "Crispy meal accompaniments",
+      "image_url": "/images/papads.png",
+      "display_order": 10
+    },
+    {
+      "id": 11,
+      "name": "BOBBATULU/OBBATTU/POORAN POLI",
+      "description": "Traditional stuffed sweet flatbreads",
+      "image_url": "/images/bobbatulu.png",
+      "display_order": 11
+    },
+    {
+      "id": 12,
+      "name": "INSTANT MIXES",
+      "description": "Quick and easy traditional meals",
+      "image_url": "/images/instantmixes.png",
+      "display_order": 12
+    },
+    {
+      "id": 13,
+      "name": "PASTE",
+      "description": "Authentic rich cooking pastes",
+      "image_url": "/images/paste.png",
+      "display_order": 13
+    },
+    {
+      "id": 14,
+      "name": "JUNNU/MILK PUDDING/GINNU/SEEM PAAL",
+      "description": "Rich, sweet traditional milk pudding",
+      "image_url": "/images/junnu.png",
+      "display_order": 14
+    },
+    {
+      "id": 15,
+      "name": "GHEE",
+      "description": "Pure, aromatic traditional clarified butter",
+      "image_url": "/images/ghee.png",
+      "display_order": 15
+    }
   ],
   "products": [
-    { "id": 1, "name": "Bellam Pootarekulu", "description": "Authentic Bellam variety", "image_url": "/images/pootharekulu.png", "category_id": 1 },
-    { "id": 2, "name": "Sugar Pootarekulu", "description": "Classic sugar variety", "image_url": "/images/pootharekulu.png", "category_id": 1 },
-    { "id": 3, "name": "Dryfruit Pootarekulu", "description": "", "image_url": "/images/pootharekulu.png", "category_id": 1 },
-    { "id": 4, "name": "Horlicks Pootarekulu", "description": "", "image_url": "/images/pootharekulu.png", "category_id": 1 },
-    { "id": 5, "name": "Oreo Pootarekulu", "description": "", "image_url": "/images/pootharekulu.png", "category_id": 1 },
-    { "id": 6, "name": "Chocolate Pootarekulu", "description": "", "image_url": "/images/pootharekulu.png", "category_id": 1 },
-    { "id": 7, "name": "Pineapple Pootarekulu", "description": "", "image_url": "/images/pootharekulu.png", "category_id": 1 },
-    { "id": 8, "name": "Strawberry Pootarekulu", "description": "", "image_url": "/images/pootharekulu.png", "category_id": 1 },
-    { "id": 9, "name": "Orange Pootarekulu", "description": "", "image_url": "/images/pootharekulu.png", "category_id": 1 },
-    { "id": 10, "name": "Vanilla Pootarekulu", "description": "", "image_url": "/images/pootharekulu.png", "category_id": 1 },
-    { "id": 11, "name": "Butterscotch Pootarekulu", "description": "", "image_url": "/images/pootharekulu.png", "category_id": 1 },
-    { "id": 12, "name": "Sesame Laddu", "description": "Nutritious sesame treat", "image_url": "/images/laddoos.png", "category_id": 2 },
-    { "id": 13, "name": "Dryfruit Laddu", "description": "", "image_url": "/images/laddoos.png", "category_id": 2 },
-    { "id": 14, "name": "Ragi Laddu", "description": "", "image_url": "/images/laddoos.png", "category_id": 2 },
-    { "id": 15, "name": "Ravva Laddu", "description": "", "image_url": "/images/laddoos.png", "category_id": 2 },
-    { "id": 16, "name": "Coconut Laddu", "description": "", "image_url": "/images/laddoos.png", "category_id": 2 },
-    { "id": 17, "name": "Groundnut Laddu", "description": "", "image_url": "/images/laddoos.png", "category_id": 2 },
-    { "id": 18, "name": "Gond Laddu", "description": "", "image_url": "/images/laddoos.png", "category_id": 2 },
-    { "id": 19, "name": "Boondi Laddu", "description": "", "image_url": "/images/laddoos.png", "category_id": 2 },
-    { "id": 20, "name": "Sesame Chikki", "description": "", "image_url": "/images/chikkis.png", "category_id": 6 },
-    { "id": 21, "name": "Groundnut Chikki", "description": "", "image_url": "/images/chikkis.png", "category_id": 6 },
-    { "id": 22, "name": "Bellam Sunnundalu", "description": "", "image_url": "/images/sunnundalu.png", "category_id": 4 },
-    { "id": 23, "name": "Sugar Sunnundalu", "description": "", "image_url": "/images/sunnundalu.png", "category_id": 4 },
-    { "id": 24, "name": "Ariselu", "description": "", "image_url": "/images/traditional.png", "category_id": 5 },
-    { "id": 25, "name": "Kajjikayalu", "description": "", "image_url": "/images/traditional.png", "category_id": 5 },
-    { "id": 26, "name": "Jantikalu", "description": "", "image_url": "/images/savouries.png", "category_id": 3 },
-    { "id": 27, "name": "Chekka Carelu", "description": "", "image_url": "/images/savouries.png", "category_id": 3 },
-    { "id": 28, "name": "Karam Boondi", "description": "", "image_url": "/images/savouries.png", "category_id": 3 },
-    { "id": 29, "name": "Ragi Muruku", "description": "", "image_url": "/images/savouries.png", "category_id": 3 },
-    { "id": 30, "name": "Tomato Pickle", "description": "", "image_url": "/images/pickles.png", "category_id": 7 },
-    { "id": 31, "name": "Mango Avakai Pickle", "description": "", "image_url": "/images/pickles.png", "category_id": 7 },
-    { "id": 32, "name": "Amla Pickle", "description": "", "image_url": "/images/pickles.png", "category_id": 7 },
-    { "id": 33, "name": "Rasam Powder", "description": "", "image_url": "/images/powders.png", "category_id": 8 },
-    { "id": 34, "name": "Nalla Karam Powder", "description": "", "image_url": "/images/powders.png", "category_id": 8 },
-    { "id": 35, "name": "Curry Leaves Powder", "description": "", "image_url": "/images/powders.png", "category_id": 8 },
-    { "id": 36, "name": "Coconut Karam Powder", "description": "", "image_url": "/images/powders.png", "category_id": 8 },
-    { "id": 37, "name": "Chutney Powder", "description": "", "image_url": "/images/powders.png", "category_id": 8 },
-    { "id": 38, "name": "Raagi Papad", "description": "", "image_url": "/images/papads.png", "category_id": 9 },
-    { "id": 39, "name": "Saggubiyyam Papad", "description": "", "image_url": "/images/papads.png", "category_id": 9 },
-    { "id": 40, "name": "Rice Flour Papad", "description": "", "image_url": "/images/papads.png", "category_id": 9 },
-    { "id": 41, "name": "Curd Chillies Papad", "description": "", "image_url": "/images/papads.png", "category_id": 9 },
-    { "id": 42, "name": "Kova Bobbatulu", "description": "", "image_url": "/images/bobbatulu.png", "category_id": 10 },
-    { "id": 43, "name": "Dal Bobbatulu", "description": "", "image_url": "/images/bobbatulu.png", "category_id": 10 },
-    { "id": 44, "name": "Buffalo Ghee", "description": "", "image_url": "/images/traditional.png", "category_id": 11 },
-    { "id": 45, "name": "Instant Dosa Mix", "description": "", "image_url": "/images/instantmixes.png", "category_id": 12 },
-    { "id": 46, "name": "Instant Upma Mix", "description": "", "image_url": "/images/instantmixes.png", "category_id": 12 },
-    { "id": 47, "name": "Tamarind Paste", "description": "", "image_url": "/images/paste.png", "category_id": 13 },
-    { "id": 48, "name": "Prawns Pickle", "description": "", "image_url": "/images/nonvegpickles.png", "category_id": 14 },
-    { "id": 49, "name": "Chicken Pickle", "description": "", "image_url": "/images/nonvegpickles.png", "category_id": 14 },
-    { "id": 50, "name": "Mutton Pickle", "description": "", "image_url": "/images/nonvegpickles.png", "category_id": 14 }
+    {
+      "id": 1,
+      "name": "Bellam/Jaggery",
+      "description": "",
+      "image_url": "/images/pootharekulu.png",
+      "category_id": 1
+    },
+    {
+      "id": 2,
+      "name": "Sugar",
+      "description": "",
+      "image_url": "/images/pootharekulu.png",
+      "category_id": 1
+    },
+    {
+      "id": 3,
+      "name": "Dryfruit",
+      "description": "",
+      "image_url": "/images/pootharekulu.png",
+      "category_id": 1
+    },
+    {
+      "id": 4,
+      "name": "Horlicks",
+      "description": "",
+      "image_url": "/images/pootharekulu.png",
+      "category_id": 1
+    },
+    {
+      "id": 5,
+      "name": "Oreo",
+      "description": "",
+      "image_url": "/images/pootharekulu.png",
+      "category_id": 1
+    },
+    {
+      "id": 6,
+      "name": "Chocolate",
+      "description": "",
+      "image_url": "/images/pootharekulu.png",
+      "category_id": 1
+    },
+    {
+      "id": 7,
+      "name": "Pineapple",
+      "description": "",
+      "image_url": "/images/pootharekulu.png",
+      "category_id": 1
+    },
+    {
+      "id": 8,
+      "name": "Strawberry",
+      "description": "",
+      "image_url": "/images/pootharekulu.png",
+      "category_id": 1
+    },
+    {
+      "id": 9,
+      "name": "Orange",
+      "description": "",
+      "image_url": "/images/pootharekulu.png",
+      "category_id": 1
+    },
+    {
+      "id": 10,
+      "name": "Vanilla",
+      "description": "",
+      "image_url": "/images/pootharekulu.png",
+      "category_id": 1
+    },
+    {
+      "id": 11,
+      "name": "Butterscotch",
+      "description": "",
+      "image_url": "/images/pootharekulu.png",
+      "category_id": 1
+    },
+    {
+      "id": 12,
+      "name": "Nuvvulu/Sesame",
+      "description": "",
+      "image_url": "/images/laddoos.png",
+      "category_id": 2
+    },
+    {
+      "id": 13,
+      "name": "Dryfruit",
+      "description": "",
+      "image_url": "/images/laddoos.png",
+      "category_id": 2
+    },
+    {
+      "id": 14,
+      "name": "Ragi",
+      "description": "",
+      "image_url": "/images/laddoos.png",
+      "category_id": 2
+    },
+    {
+      "id": 15,
+      "name": "Ravva",
+      "description": "",
+      "image_url": "/images/laddoos.png",
+      "category_id": 2
+    },
+    {
+      "id": 16,
+      "name": "Kobbari/Coconut",
+      "description": "",
+      "image_url": "/images/laddoos.png",
+      "category_id": 2
+    },
+    {
+      "id": 17,
+      "name": "Groundnut/Peanut",
+      "description": "",
+      "image_url": "/images/laddoos.png",
+      "category_id": 2
+    },
+    {
+      "id": 18,
+      "name": "Gond",
+      "description": "",
+      "image_url": "/images/laddoos.png",
+      "category_id": 2
+    },
+    {
+      "id": 19,
+      "name": "Boondi",
+      "description": "",
+      "image_url": "/images/laddoos.png",
+      "category_id": 2
+    },
+    {
+      "id": 20,
+      "name": "Jantikalu/Murukulu/Chakli",
+      "description": "",
+      "image_url": "/images/savouries.png",
+      "category_id": 3
+    },
+    {
+      "id": 21,
+      "name": "Chekka Garelu/Thattai/Nippattu",
+      "description": "",
+      "image_url": "/images/savouries.png",
+      "category_id": 3
+    },
+    {
+      "id": 22,
+      "name": "Karam Boondi",
+      "description": "",
+      "image_url": "/images/savouries.png",
+      "category_id": 3
+    },
+    {
+      "id": 23,
+      "name": "Ragi Muruku",
+      "description": "",
+      "image_url": "/images/savouries.png",
+      "category_id": 3
+    },
+    {
+      "id": 24,
+      "name": "Millet Muuku",
+      "description": "",
+      "image_url": "/images/savouries.png",
+      "category_id": 3
+    },
+    {
+      "id": 25,
+      "name": "Bellam/Jaggery",
+      "description": "",
+      "image_url": "/images/sunnundalu.png",
+      "category_id": 4
+    },
+    {
+      "id": 26,
+      "name": "Sugar",
+      "description": "",
+      "image_url": "/images/sunnundalu.png",
+      "category_id": 4
+    },
+    {
+      "id": 27,
+      "name": "Ariselu/Adhirasam/Kajjaya/Anarsa",
+      "description": "",
+      "image_url": "/images/traditional.png",
+      "category_id": 5
+    },
+    {
+      "id": 28,
+      "name": "Kajjikayelu/Karjikai/Karanji/Gujiya",
+      "description": "",
+      "image_url": "/images/traditional.png",
+      "category_id": 5
+    },
+    {
+      "id": 29,
+      "name": "Nuvvulu/Sesame",
+      "description": "",
+      "image_url": "/images/chikkis.png",
+      "category_id": 6
+    },
+    {
+      "id": 30,
+      "name": "Groundnut/Peanut/palli",
+      "description": "",
+      "image_url": "/images/chikkis.png",
+      "category_id": 6
+    },
+    {
+      "id": 31,
+      "name": "Tomato",
+      "description": "",
+      "image_url": "/images/pickles.png",
+      "category_id": 7
+    },
+    {
+      "id": 32,
+      "name": "Mango Avakai",
+      "description": "",
+      "image_url": "/images/pickles.png",
+      "category_id": 7
+    },
+    {
+      "id": 33,
+      "name": "Amla/Indian Gooseberry",
+      "description": "",
+      "image_url": "/images/pickles.png",
+      "category_id": 7
+    },
+    {
+      "id": 34,
+      "name": "Drum Stick/Moringa",
+      "description": "",
+      "image_url": "/images/pickles.png",
+      "category_id": 7
+    },
+    {
+      "id": 35,
+      "name": "Prawns",
+      "description": "",
+      "image_url": "/images/nonvegpickles.png",
+      "category_id": 8
+    },
+    {
+      "id": 36,
+      "name": "Chicken",
+      "description": "",
+      "image_url": "/images/nonvegpickles.png",
+      "category_id": 8
+    },
+    {
+      "id": 37,
+      "name": "Mutton",
+      "description": "",
+      "image_url": "/images/nonvegpickles.png",
+      "category_id": 8
+    },
+    {
+      "id": 38,
+      "name": "Rasam",
+      "description": "",
+      "image_url": "/images/powders.png",
+      "category_id": 9
+    },
+    {
+      "id": 39,
+      "name": "Nalla Karam/Karapodi",
+      "description": "",
+      "image_url": "/images/powders.png",
+      "category_id": 9
+    },
+    {
+      "id": 40,
+      "name": "Curry Leaves",
+      "description": "",
+      "image_url": "/images/powders.png",
+      "category_id": 9
+    },
+    {
+      "id": 41,
+      "name": "Kobbari/Coconut Karam",
+      "description": "",
+      "image_url": "/images/powders.png",
+      "category_id": 9
+    },
+    {
+      "id": 42,
+      "name": "Putnala Pappu/Roasted Bengal Gram",
+      "description": "",
+      "image_url": "/images/powders.png",
+      "category_id": 9
+    },
+    {
+      "id": 43,
+      "name": "Ragi",
+      "description": "",
+      "image_url": "/images/papads.png",
+      "category_id": 10
+    },
+    {
+      "id": 44,
+      "name": "Saggubiyyam (Tapioca Pearls)",
+      "description": "",
+      "image_url": "/images/papads.png",
+      "category_id": 10
+    },
+    {
+      "id": 45,
+      "name": "Rice Flour",
+      "description": "",
+      "image_url": "/images/papads.png",
+      "category_id": 10
+    },
+    {
+      "id": 46,
+      "name": "Oora Mirapakaya/Curd Chillies",
+      "description": "",
+      "image_url": "/images/papads.png",
+      "category_id": 10
+    },
+    {
+      "id": 47,
+      "name": "Kova/Coconut (Kobbari)",
+      "description": "",
+      "image_url": "/images/bobbatulu.png",
+      "category_id": 11
+    },
+    {
+      "id": 48,
+      "name": "Dal",
+      "description": "",
+      "image_url": "/images/bobbatulu.png",
+      "category_id": 11
+    },
+    {
+      "id": 49,
+      "name": "Dosa/Idli",
+      "description": "",
+      "image_url": "/images/instantmixes.png",
+      "category_id": 12
+    },
+    {
+      "id": 50,
+      "name": "Upma",
+      "description": "",
+      "image_url": "/images/instantmixes.png",
+      "category_id": 12
+    },
+    {
+      "id": 51,
+      "name": "Tamarind Paste(Pulihora/Pulioghere)",
+      "description": "",
+      "image_url": "/images/paste.png",
+      "category_id": 13
+    },
+    {
+      "id": 52,
+      "name": "Small",
+      "description": "",
+      "image_url": "/images/junnu.png",
+      "category_id": 14
+    },
+    {
+      "id": 53,
+      "name": "Big",
+      "description": "",
+      "image_url": "/images/junnu.png",
+      "category_id": 14
+    },
+    {
+      "id": 54,
+      "name": "Buffalo",
+      "description": "",
+      "image_url": "/images/ghee.png",
+      "category_id": 15
+    }
   ],
   "stock_levels": [
-    { "id": 1, "weight": "10 Pcs", "price": 200.0, "inStock": true, "product_id": 1 },
-    { "id": 2, "weight": "10 Pcs", "price": 180.0, "inStock": true, "product_id": 2 },
-    { "id": 3, "weight": "10 Pcs", "price": 250.0, "inStock": true, "product_id": 3 },
-    { "id": 4, "weight": "10 Pcs", "price": 250.0, "inStock": true, "product_id": 4 },
-    { "id": 5, "weight": "10 Pcs", "price": 250.0, "inStock": true, "product_id": 5 },
-    { "id": 6, "weight": "10 Pcs", "price": 250.0, "inStock": true, "product_id": 6 },
-    { "id": 7, "weight": "10 Pcs", "price": 250.0, "inStock": true, "product_id": 7 },
-    { "id": 8, "weight": "10 Pcs", "price": 250.0, "inStock": true, "product_id": 8 },
-    { "id": 9, "weight": "10 Pcs", "price": 250.0, "inStock": true, "product_id": 9 },
-    { "id": 10, "weight": "10 Pcs", "price": 250.0, "inStock": true, "product_id": 10 },
-    { "id": 11, "weight": "10 Pcs", "price": 250.0, "inStock": true, "product_id": 11 },
-    { "id": 12, "weight": "250 Gms", "price": 190.0, "inStock": true, "product_id": 12 },
-    { "id": 13, "weight": "250 Gms", "price": 300.0, "inStock": true, "product_id": 13 },
-    { "id": 14, "weight": "250 Gms", "price": 200.0, "inStock": true, "product_id": 14 },
-    { "id": 15, "weight": "250 Gms", "price": 160.0, "inStock": true, "product_id": 15 },
-    { "id": 16, "weight": "250 Gms", "price": 170.0, "inStock": true, "product_id": 16 },
-    { "id": 17, "weight": "250 Gms", "price": 170.0, "inStock": true, "product_id": 17 },
-    { "id": 18, "weight": "250 Gms", "price": 200.0, "inStock": true, "product_id": 18 },
-    { "id": 19, "weight": "250 Gms", "price": 150.0, "inStock": true, "product_id": 19 },
-    { "id": 20, "weight": "250 Gms", "price": 180.0, "inStock": true, "product_id": 20 },
-    { "id": 21, "weight": "250 Gms", "price": 150.0, "inStock": true, "product_id": 21 },
-    { "id": 22, "weight": "250 Gms", "price": 190.0, "inStock": true, "product_id": 22 },
-    { "id": 23, "weight": "250 Gms", "price": 180.0, "inStock": true, "product_id": 23 },
-    { "id": 24, "weight": "250 Gms", "price": 200.0, "inStock": true, "product_id": 24 },
-    { "id": 25, "weight": "250 Gms", "price": 160.0, "inStock": true, "product_id": 25 },
-    { "id": 26, "weight": "250 Gms", "price": 150.0, "inStock": true, "product_id": 26 },
-    { "id": 27, "weight": "250 Gms", "price": 180.0, "inStock": true, "product_id": 27 },
-    { "id": 28, "weight": "250 Gms", "price": 140.0, "inStock": true, "product_id": 28 },
-    { "id": 29, "weight": "250 Gms", "price": 140.0, "inStock": true, "product_id": 29 },
-    { "id": 30, "weight": "250 Gms", "price": 130.0, "inStock": true, "product_id": 30 },
-    { "id": 31, "weight": "250 Gms", "price": 130.0, "inStock": true, "product_id": 31 },
-    { "id": 32, "weight": "250 Gms", "price": 200.0, "inStock": true, "product_id": 32 },
-    { "id": 33, "weight": "100 Gms", "price": 60.0, "inStock": true, "product_id": 33 },
-    { "id": 34, "weight": "100 Gms", "price": 60.0, "inStock": true, "product_id": 34 },
-    { "id": 35, "weight": "100 Gms", "price": 60.0, "inStock": true, "product_id": 35 },
-    { "id": 36, "weight": "100 Gms", "price": 60.0, "inStock": true, "product_id": 36 },
-    { "id": 37, "weight": "70 Gms", "price": 70.0, "inStock": true, "product_id": 37 },
-    { "id": 38, "weight": "100 Gms", "price": 80.0, "inStock": true, "product_id": 38 },
-    { "id": 39, "weight": "100 Gms", "price": 80.0, "inStock": true, "product_id": 39 },
-    { "id": 40, "weight": "100 Gms", "price": 60.0, "inStock": true, "product_id": 40 },
-    { "id": 41, "weight": "100 Gms", "price": 70.0, "inStock": true, "product_id": 41 },
-    { "id": 42, "weight": "1 PC", "price": 40.0, "inStock": true, "product_id": 42 },
-    { "id": 43, "weight": "1 PC", "price": 30.0, "inStock": true, "product_id": 43 },
-    { "id": 44, "weight": "250 Gms", "price": 250.0, "inStock": true, "product_id": 44 },
-    { "id": 45, "weight": "100 Gms", "price": 60.0, "inStock": true, "product_id": 45 },
-    { "id": 46, "weight": "100 Gms", "price": 40.0, "inStock": true, "product_id": 46 },
-    { "id": 47, "weight": "250 Gms", "price": 125.0, "inStock": true, "product_id": 47 },
-    { "id": 48, "weight": "250 Gms", "price": 500.0, "inStock": true, "product_id": 48 },
-    { "id": 49, "weight": "250 Gms", "price": 300.0, "inStock": true, "product_id": 49 },
-    { "id": 50, "weight": "250 Gms", "price": 550.0, "inStock": true, "product_id": 50 }
+    {
+      "id": 1,
+      "weight": "10 Pcs",
+      "price": 200,
+      "in_stock": true,
+      "product_id": 1,
+      "inStock": true
+    },
+    {
+      "id": 2,
+      "weight": "10 Pcs",
+      "price": 180,
+      "in_stock": true,
+      "product_id": 2
+    },
+    {
+      "id": 3,
+      "weight": "10 Pcs",
+      "price": 250,
+      "in_stock": true,
+      "product_id": 3
+    },
+    {
+      "id": 4,
+      "weight": "10 Pcs",
+      "price": 250,
+      "in_stock": true,
+      "product_id": 4
+    },
+    {
+      "id": 5,
+      "weight": "10 Pcs",
+      "price": 250,
+      "in_stock": true,
+      "product_id": 5
+    },
+    {
+      "id": 6,
+      "weight": "10 Pcs",
+      "price": 250,
+      "in_stock": true,
+      "product_id": 6
+    },
+    {
+      "id": 7,
+      "weight": "10 Pcs",
+      "price": 250,
+      "in_stock": true,
+      "product_id": 7
+    },
+    {
+      "id": 8,
+      "weight": "10 Pcs",
+      "price": 250,
+      "in_stock": true,
+      "product_id": 8
+    },
+    {
+      "id": 9,
+      "weight": "10 Pcs",
+      "price": 250,
+      "in_stock": true,
+      "product_id": 9
+    },
+    {
+      "id": 10,
+      "weight": "10 Pcs",
+      "price": 250,
+      "in_stock": true,
+      "product_id": 10
+    },
+    {
+      "id": 11,
+      "weight": "10 Pcs",
+      "price": 250,
+      "in_stock": true,
+      "product_id": 11
+    },
+    {
+      "id": 12,
+      "weight": "250 Gms",
+      "price": 190,
+      "in_stock": true,
+      "product_id": 12
+    },
+    {
+      "id": 13,
+      "weight": "250 Gms",
+      "price": 300,
+      "in_stock": true,
+      "product_id": 13
+    },
+    {
+      "id": 14,
+      "weight": "250 Gms",
+      "price": 200,
+      "in_stock": true,
+      "product_id": 14
+    },
+    {
+      "id": 15,
+      "weight": "250 Gms",
+      "price": 160,
+      "in_stock": true,
+      "product_id": 15
+    },
+    {
+      "id": 16,
+      "weight": "250 Gms",
+      "price": 170,
+      "in_stock": true,
+      "product_id": 16
+    },
+    {
+      "id": 17,
+      "weight": "250 Gms",
+      "price": 170,
+      "in_stock": true,
+      "product_id": 17
+    },
+    {
+      "id": 18,
+      "weight": "250 Gms",
+      "price": 200,
+      "in_stock": true,
+      "product_id": 18
+    },
+    {
+      "id": 19,
+      "weight": "250 Gms",
+      "price": 150,
+      "in_stock": true,
+      "product_id": 19
+    },
+    {
+      "id": 20,
+      "weight": "250 Gms",
+      "price": 150,
+      "in_stock": true,
+      "product_id": 20
+    },
+    {
+      "id": 21,
+      "weight": "250 Gms",
+      "price": 180,
+      "in_stock": true,
+      "product_id": 21
+    },
+    {
+      "id": 22,
+      "weight": "250 Gms",
+      "price": 140,
+      "in_stock": true,
+      "product_id": 22
+    },
+    {
+      "id": 23,
+      "weight": "250 Gms",
+      "price": 140,
+      "in_stock": true,
+      "product_id": 23
+    },
+    {
+      "id": 24,
+      "weight": "250 Gms",
+      "price": 150,
+      "in_stock": true,
+      "product_id": 24
+    },
+    {
+      "id": 25,
+      "weight": "250 Gms",
+      "price": 190,
+      "in_stock": true,
+      "product_id": 25
+    },
+    {
+      "id": 26,
+      "weight": "250 Gms",
+      "price": 180,
+      "in_stock": true,
+      "product_id": 26
+    },
+    {
+      "id": 27,
+      "weight": "250 Gms",
+      "price": 200,
+      "in_stock": true,
+      "product_id": 27
+    },
+    {
+      "id": 28,
+      "weight": "250 Gms",
+      "price": 160,
+      "in_stock": true,
+      "product_id": 28
+    },
+    {
+      "id": 29,
+      "weight": "250 Gms",
+      "price": 180,
+      "in_stock": true,
+      "product_id": 29
+    },
+    {
+      "id": 30,
+      "weight": "250 Gms",
+      "price": 150,
+      "in_stock": true,
+      "product_id": 30
+    },
+    {
+      "id": 31,
+      "weight": "250 Gms",
+      "price": 130,
+      "in_stock": true,
+      "product_id": 31
+    },
+    {
+      "id": 32,
+      "weight": "250 Gms",
+      "price": 130,
+      "in_stock": true,
+      "product_id": 32
+    },
+    {
+      "id": 33,
+      "weight": "250 Gms",
+      "price": 200,
+      "in_stock": true,
+      "product_id": 33
+    },
+    {
+      "id": 34,
+      "weight": "250 Gms",
+      "price": 150,
+      "in_stock": true,
+      "product_id": 34
+    },
+    {
+      "id": 35,
+      "weight": "250 Gms",
+      "price": 500,
+      "in_stock": true,
+      "product_id": 35
+    },
+    {
+      "id": 36,
+      "weight": "250 Gms",
+      "price": 300,
+      "in_stock": true,
+      "product_id": 36
+    },
+    {
+      "id": 37,
+      "weight": "250 Gms",
+      "price": 550,
+      "in_stock": true,
+      "product_id": 37
+    },
+    {
+      "id": 38,
+      "weight": "100 Gms",
+      "price": 60,
+      "in_stock": true,
+      "product_id": 38
+    },
+    {
+      "id": 39,
+      "weight": "100 Gms",
+      "price": 60,
+      "in_stock": true,
+      "product_id": 39
+    },
+    {
+      "id": 40,
+      "weight": "100 Gms",
+      "price": 60,
+      "in_stock": true,
+      "product_id": 40
+    },
+    {
+      "id": 41,
+      "weight": "100 Gms",
+      "price": 60,
+      "in_stock": true,
+      "product_id": 41
+    },
+    {
+      "id": 42,
+      "weight": "100 Gms",
+      "price": 70,
+      "in_stock": true,
+      "product_id": 42
+    },
+    {
+      "id": 43,
+      "weight": "100 Gms",
+      "price": 80,
+      "in_stock": true,
+      "product_id": 43
+    },
+    {
+      "id": 44,
+      "weight": "100 Gms",
+      "price": 80,
+      "in_stock": true,
+      "product_id": 44
+    },
+    {
+      "id": 45,
+      "weight": "100 Gms",
+      "price": 60,
+      "in_stock": true,
+      "product_id": 45
+    },
+    {
+      "id": 46,
+      "weight": "100 Gms",
+      "price": 70,
+      "in_stock": true,
+      "product_id": 46
+    },
+    {
+      "id": 47,
+      "weight": "1 PC",
+      "price": 40,
+      "in_stock": true,
+      "product_id": 47
+    },
+    {
+      "id": 48,
+      "weight": "1 PC",
+      "price": 30,
+      "in_stock": true,
+      "product_id": 48
+    },
+    {
+      "id": 49,
+      "weight": "100 Gms",
+      "price": 60,
+      "in_stock": true,
+      "product_id": 49
+    },
+    {
+      "id": 50,
+      "weight": "100 Gms",
+      "price": 40,
+      "in_stock": true,
+      "product_id": 50
+    },
+    {
+      "id": 51,
+      "weight": "250 Gms",
+      "price": 125,
+      "in_stock": true,
+      "product_id": 51
+    },
+    {
+      "id": 52,
+      "weight": "Various",
+      "price": 70,
+      "in_stock": true,
+      "product_id": 52
+    },
+    {
+      "id": 53,
+      "weight": "Various",
+      "price": 140,
+      "in_stock": true,
+      "product_id": 53
+    },
+    {
+      "id": 54,
+      "weight": "250 Gms",
+      "price": 250,
+      "in_stock": true,
+      "product_id": 54
+    }
   ]
 }

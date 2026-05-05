@@ -14,7 +14,7 @@ export default function Catalog() {
       .then(data => {
         const map = {};
         if (data && Array.isArray(data)) {
-          data.forEach(d => map[d.contentKey] = d.contentValue);
+          data.forEach(d => { map[d.key] = d.value; });
           setSiteContent(map);
         }
       }).catch(err => console.error(err));
@@ -107,12 +107,12 @@ export default function Catalog() {
             "{siteContent.FOOTER_TEXT || 'Authentic Taste, Handcrafted with Love'}"
           </p>
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center text-emerald-100/70 mb-10 relative z-10 font-medium">
-            <span className="flex items-center gap-2"><Clock className="w-5 h-5 text-gold-500" /> {siteContent.NOTICE_1 || 'Preparation takes 24-48 hrs'}</span>
+            <span className="flex items-center gap-2"><Clock className="w-5 h-5 text-gold-500" /> {siteContent.NOTICE_1 || 'Takes 24-48 hrs to deliver'}</span>
             <span className="hidden md:block w-1.5 h-1.5 bg-gold-500/50 rounded-full"></span>
             <span className="flex items-center gap-2"><ShoppingBag className="w-5 h-5 text-gold-500" /> {siteContent.NOTICE_2 || 'Bulk orders accepted on preorder'}</span>
           </div>
           <p className="text-gold-500 font-black text-xl relative z-10 uppercase tracking-widest bg-forest-950 px-8 py-4 rounded-2xl border border-gold-500/20 inline-block shadow-2xl">
-            WhatsApp Orders: {siteContent.CONTACT_NUMBER || '7829029995'}
+            WhatsApp Orders: {siteContent.CONTACT_NUMBER || '9945060993'}
           </p>
         </div>
       </div>
